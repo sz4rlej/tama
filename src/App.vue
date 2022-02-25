@@ -1,13 +1,25 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import { useLife } from './stores/useLife';
+import { useLife } from './stores/life';
 
 
 export default {
   setup() {
     const life = useLife()
     return { life }
-  }
+  },
+  mounted: function () {
+    window.setInterval(() => {
+        useLife().makeOlder(1)
+        useLife().makeMoreHungry(1)
+        useLife().makeLessHydrated(1)
+        useLife().makeMoreStuffy(1)
+        useLife().makeMoreDirty(1)
+        useLife().makeMoreAddicted(1)
+        useLife().makeMoreLonely(1)
+        useLife().makeMoreBored(1)
+    }, 1000)
+  },
 }
 
 </script>
@@ -18,7 +30,14 @@ export default {
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/about">About {{ life.getHunger }} </RouterLink>
+        <button @click="life.feed()">Feed</button>
+        <button @click="life.hydrate()">Hydrate</button>
+        <button @click="life.shit()">Shit</button>
+        <button @click="life.wash()">Wash</button>
+        <button @click="life.pat()">Pat</button>
+        <button @click="life.inject()">Inject Drugs</button>
+        <button @click="life.playBrutalGames()">Play Games[Brutal]</button>
+        <button @click="life.playUnicornGames()">Play Games[Fairy]</button>
       </nav>
     </div>
   </header>
