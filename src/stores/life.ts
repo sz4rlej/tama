@@ -174,38 +174,44 @@ export const useLife = defineStore({
 		  newLoneliness < 1000 ? this.loneliness+=value : this.loneliness = 1000
 		},
 		makeOlder(value) {
-		  this.age + value < 10000 ? this.age +=value : this.age = 10000 
+			if(this.dead!=1){
+		  	this.age + value < 10000 ? this.age +=value : this.age = 10000 				
+			}
 		},
 		makeMoreHungry(value) {
-			var newHunger = this.hunger + value
-			if(newHunger < 10000 && newHunger > 4000){
-		  	this.comment = 'Odchudzanie... może grubas zmieści się w te ubrania po ostatnim potworku, którego wychowywałeś...'
-		  }
-		  else if(newHunger < 10000){
-		  }
-		  else{
-		  	this.comment = '[ŚMIERĆ] Popatrz na to z jasnej strony, przynajmniej z głodu sie nie zesra...'
-		  	this.dead = 1
-		  }
+			if(this.dead!=1){
+				var newHunger = this.hunger + value
+				if(newHunger < 10000 && newHunger > 4000){
+			  	this.comment = 'Odchudzanie... może grubas zmieści się w te ubrania po ostatnim potworku, którego wychowywałeś...'
+			  }
+			  else if(newHunger < 10000){
 
+			  }
+			  else{
+			  	this.comment = '[ŚMIERĆ] Popatrz na to z jasnej strony, przynajmniej z głodu sie nie zesra...'
+			  	this.dead = 1
+			  }
+			}
 		  this.hunger + value < 10000 ? this.hunger+=value : this.hunger = 10000
 		},
 		makeMoreThirsty(value) {
-		  var newThirst = this.thirst + value 
-		  if(newThirst < 10000 && newThirst > 4000){
-		  	this.thirst +=value
-		  	//Można dać arrraya i random text z niego, póki co niech będzie jeden
-		  	this.comment = 'Myślisz że jak nie dasz mu wody to wyewoluuje w wielbłąda... Sprytnie! Ciekawe jaki będzie tego finał...'
-		  }
-		  else if(newThirst < 10000){
-		  	
-		  }
-		  else{
-		  	this.comment = '[ŚMIERĆ] Wygląda jak ofiara suchego dowcipu...'
-		  	this.dead = 1
-		  }
+			if(this.dead!=1){
+			  var newThirst = this.thirst + value 
+			  if(newThirst < 10000 && newThirst > 4000){
+			  	this.thirst +=value
+			  	//Można dać arrraya i random text z niego, póki co niech będzie jeden
+			  	this.comment = 'Myślisz że jak nie dasz mu wody to wyewoluuje w wielbłąda... Sprytnie! Ciekawe jaki będzie tego finał...'
+			  }
+			  else if(newThirst < 10000){
+			  	
+			  }
+			  else{
+			  	this.comment = '[ŚMIERĆ] Wygląda jak ofiara suchego dowcipu...'
+			  	this.dead = 1
+			  }
 
-		  this.thirst + value < 10000 ? this.thirst+=value : this.thirst = 10000
+			  this.thirst + value < 10000 ? this.thirst+=value : this.thirst = 10000
+			}
 		},
 		makeMoreStuffy(value) {
 		  this.stuffing + value < 10000 ? this.stuffing +=value : this.stuffing = 10000 
@@ -217,19 +223,22 @@ export const useLife = defineStore({
 		  this.addiction + value < 10000 ? this.addiction +=value : this.addiction = 10000 
 		},
 		makeMoreLonely(value) {
-		  var newLonelines = this.loneliness + value 
-		  if(newLonelines < 1000 && newLonelines > 500){
+			if(this.dead!=1){
+			  var newLonelines = this.loneliness + value 
 
-		  	this.comment = 'Twój pupil zaczął ubierać się jak EMO. Naaah na pewno nie brakuje mu Twojej uwagi! ;- )'
-		  }
-		  else if(newLonelines < 1000){
-		  	
-		  }
-		  else{
-		  	this.comment = '[ŚMIERĆ] Powiesił się.. zostawił list pożegnalny o treści: "(¬⌓¬).I."'
-		  	this.dead = 1
-		  }
-		  newLonelines < 1000 ? this.loneliness +=value : this.loneliness = 1000
+			  if(newLonelines < 1000 && newLonelines > 500){
+
+			  	this.comment = 'Twój pupil zaczął ubierać się jak EMO. Naaah na pewno nie brakuje mu Twojej uwagi! ;- )'
+			  }
+			  else if(newLonelines < 1000){
+			  	
+			  }
+			  else{
+			  	this.comment = '[ŚMIERĆ] Powiesił się.. zostawił list pożegnalny o treści: "(¬⌓¬).I."'
+			  	this.dead = 1
+			  }
+			  newLonelines < 1000 ? this.loneliness +=value : this.loneliness = 1000
+			}
 		},		
 		makeMoreBored(value) {
 		  this.boredom + value < 10000 ? this.boredom +=value : this.boredom = 10000
