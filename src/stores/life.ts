@@ -139,8 +139,10 @@ export const useLife = defineStore({
 			if(this.dead == 1){
 		  	this.comment = 'Widzisz, wreszcie udało Ci się wygrać z nim w tą gre! Jesteś pewnie z siebie dumny :- )'
 		  }
-
-		  this.comment = 'Jak zawsze dostajesz od zwierzaka łomot na multi...'
+		  else{
+		  	this.comment = 'Jak zawsze dostajesz od zwierzaka łomot na multi...'
+		  }
+		  
 		  this.loneliness - 20 > 0 ? this.loneliness-=20 : this.loneliness = 0
 		  this.boredom - 100 > 0 ? this.boredom-=100 : this.boredom = 0 
 		},	
@@ -149,8 +151,10 @@ export const useLife = defineStore({
 			if(this.dead == 1){
 		  	this.comment = 'Sercowy miś i przyjaciele pytali się cały dzień o Twojego kompana...'
 		  }
+		  else{
+		  	this.comment = 'Jednorożce, Tęczę i sercowe przygody... nudy na pudy, ale przynajmniej nie przegrywasz...'
+		  }
 
-			this.comment = 'Jednorożce, Tęczę i sercowe przygody... nudy na pudy, ale przynajmniej nie przegrywasz...'
 		  this.loneliness - 20 > 0 ? this.loneliness-=20 : this.loneliness = 0
 		  this.boredom - 100 > 0 ? this.boredom-=100 : this.boredom = 0 
 		},
