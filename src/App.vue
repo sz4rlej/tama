@@ -10,15 +10,17 @@ export default {
   },
   mounted: function () {
     window.setInterval(() => {
-        useLife().makeOlder(1)
-        useLife().makeMoreHungry(1)
-        useLife().makeLessHydrated(1)
-        useLife().makeMoreStuffy(1)
-        useLife().makeMoreDirty(1)
-        useLife().makeMoreAddicted(1)
-        useLife().makeMoreLonely(1)
-        useLife().makeMoreBored(1)
-    }, 1000)
+        if(useLife().isDead!=1){
+          useLife().makeOlder(20)
+          useLife().makeMoreHungry(20)
+          useLife().makeMoreThirsty(20)
+          useLife().makeMoreStuffy(20)
+          useLife().makeMoreDirty(20)
+          useLife().makeMoreAddicted(20)
+          useLife().makeMoreLonely(20)
+          useLife().makeMoreBored(20)        
+        }
+    }, 2000)
   },
 }
 
@@ -30,14 +32,14 @@ export default {
 
     <div class="wrapper">
       <nav>
-        <button @click="life.feed()">Feed</button>
-        <button @click="life.hydrate()">Hydrate</button>
-        <button @click="life.shit()">Shit</button>
-        <button @click="life.wash()">Wash</button>
-        <button @click="life.pat()">Pat</button>
-        <button @click="life.inject()">Inject Drugs</button>
-        <button @click="life.playBrutalGames()">Play Games[Brutal]</button>
-        <button @click="life.playUnicornGames()">Play Games[Fairy]</button>
+        <button @click="life.feed(100)">Feed</button>
+        <button @click="life.hydrate(100)">Hydrate</button>
+        <button @click="life.shit(5000)">Shit</button>
+        <button @click="life.wash(100)">Wash</button>
+        <button @click="life.pat(100)">Pat</button>
+        <button @click="life.inject(100)">Inject Drugs</button>
+        <button @click="life.playBrutalGames(100)">Play Games[Brutal]</button>
+        <button @click="life.playUnicornGames(100)">Play Games[Fairy]</button>
       </nav>
     </div>
   </header>
