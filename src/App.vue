@@ -11,16 +11,16 @@ export default {
   mounted: function () {
     window.setInterval(() => {
         if(useLife().isDead!=1){
-          useLife().makeOlder(20)
-          useLife().makeMoreHungry(20)
-          useLife().makeMoreThirsty(20)
-          useLife().makeMoreStuffy(20)
-          useLife().makeMoreDirty(20)
-          useLife().makeMoreAddicted(20)
-          useLife().makeMoreLonely(20)
-          useLife().makeMoreBored(20)        
+          useLife().makeOlder(10)
+          useLife().makeMoreHungry(80)
+          useLife().makeMoreThirsty(80)
+          useLife().makeMoreStuffy(80)
+          useLife().makeMoreDirty(40)
+          useLife().makeMoreAddicted(40)
+          useLife().makeMoreLonely(80)
+          useLife().makeMoreBored(80)        
         }
-    }, 2000)
+    }, 6000)
   },
 }
 
@@ -32,14 +32,15 @@ export default {
 
     <div class="wrapper">
       <nav>
-        <button @click="life.feed(100)">Feed</button>
-        <button @click="life.hydrate(100)">Hydrate</button>
-        <button @click="life.shit(5000)">Shit</button>
-        <button @click="life.wash(100)">Wash</button>
-        <button @click="life.pat(100)">Pat</button>
-        <button @click="life.inject(100)">Inject Drugs</button>
+        <button @click="life.feed(1000)">Nakarm</button>
+        <button @click="life.hydrate(1000)">Napój</button>
+        <button @click="life.shit(5000)">Wysraj</button>
+        <button @click="life.wash(1000)">Umyj</button>
+        <button @click="life.pat(1000)">Głaszcz</button>
+        <button @click="life.inject(1000)">Wstrzyknij narkotyki</button>
         <button @click="life.playBrutalGames(100)">Play Games[Brutal]</button>
         <button @click="life.playUnicornGames(100)">Play Games[Fairy]</button>
+        <button @click="life.putInCloset(100)">Zamknij w komórce</button>
       </nav>
     </div>
   </header>

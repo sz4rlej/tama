@@ -7,12 +7,12 @@ export const useLife = defineStore({
 		died: null,
 		last_visited: null,
 		thirst: 2000,
-		hunger: 9950,
+		hunger: 9550,
 		stuffing: 0,
 		hygiene: 2000,
 		addiction: 2000, 
 		age: 1,
-		loneliness: 1000,
+		loneliness: 300,
 		boredom: 1000,
 		sanity: 5000,
 		dead: 0,
@@ -40,10 +40,11 @@ export const useLife = defineStore({
 			if(this.dead == 1){
 		  	this.comment = 'Pierwsze: zombie jedzą tylko mózgi... Drugie: nie stać Cię na nekromantę.'
 		  }
-			else if(newHunger > 5000){
+			else if(newHunger > 9000){
 		  	this.hunger -=value
+		  	this.comment = 'Wpiernicza tą brukselke, aż mu się uszy trzęsą!'
 		  }
-		  else if(newHunger < 5000 && newHunger > 3500){
+		  else if(newHunger < 9000 && newHunger > 3500){
 		  	this.hunger -=value
 		  	this.comment = 'Tak znów z tym pasztetem!'
 		  }
@@ -61,22 +62,21 @@ export const useLife = defineStore({
 		  }
 
 		  this.stuffing += value
-		  this.loneliness - 10 > 0 ? this.loneliness-=10 : this.loneliness = 0 
+		  this.loneliness - 5 > 0 ? this.loneliness-=5 : this.loneliness = 0 
 		},
 		hydrate(value) {
 			var newThirst = this.thirst - value
 			if(this.dead == 1){
-		  	this.comment = 'O widzę hodowcy pieczarek! No grunt to dobry nawóz ;- ).'
+		  	this.comment = 'O widzę hodowca pieczarek! No grunt to dobry nawóz ;- ).'
 		  }
 			else if(newThirst > 10000 && newThirst < 8000){
-		  	this.thirst -=value
 		  	this.comment = 'Ale się przyssał... Przecież to tylko woda.'
 		  }
 		  else{
-		  	this.thirst = 0
 		  	this.comment = 'Ze mną się nie napijesz ?!'
 		  }
-		  this.loneliness - 10 > 0 ? this.loneliness-=10 : this.loneliness = 0
+		  this.thirst - value > 0 ? this.thirst-=value : this.thirst = 0
+		  this.loneliness - 5 > 0 ? this.loneliness-=5 : this.loneliness = 0
 		},
 		shit(value) {
 			var newStuffing = this.stuffing -= value
@@ -84,25 +84,21 @@ export const useLife = defineStore({
 		  	this.comment = 'To Tamagotchi a nie Kopi Luwak! Nic tam nie znajdziesz a na pewno nic cennego.'
 		  }
 			else if(newStuffing < 10000 && newStuffing > 4000){
-		  	this.stuffing -=value
 		  	this.comment = 'Ale się scapił! AHTUNG Panzerabwehrmine!'
 		  }
 			else if(newStuffing < 4000 && newStuffing> 2000){
-		  	this.stuffing -=value
 		  	this.comment = 'W dzisiejszym losowaniu multilotka....'
 		  }
 			else if(newStuffing < 2000 && newStuffing > 1000){
-		  	this.stuffing -=value
 		  	this.comment = 'Chocapic! Czekoladowa pycha!'
 		  }
 			else if(newStuffing < 1000 && newStuffing > 0){
-		  	this.stuffing -=value
 		  	this.comment = 'MAMO JA CHCE U TOMKA!'
 		  }
 		  else{
-		  	this.stuffing = 0
 		  	this.comment = 'Do trąbki to temu daleko.'
 		  }
+		  this.stuffing - value > 0 ? this.stuffing-=value : this.stuffing = 0
 		  this.loneliness - 10 > 0 ? this.loneliness-=10 : this.loneliness = 0
 		  this.hygiene - 50 > 0 ? this.hygiene-=50 : this.hygiene = 0
 		},
@@ -115,6 +111,26 @@ export const useLife = defineStore({
 		  this.loneliness - 10 > 0 ? this.loneliness-=10 : this.loneliness = 0
 		},
 		pat(value) {
+			var newLoneliness = this.loneliness -= value
+			if(this.dead == 1){
+		  	this.comment = 'Maskotka lepiej by sie sprawdziła... i nie przyciągałaby much.'
+		  }
+			else if(newLoneliness < 1000 && newLoneliness > 800){
+		  	this.comment = ''
+		  }
+			else if(newLoneliness < 800 && newLoneliness> 600){
+		  	this.comment = ''
+		  }
+			else if(newLoneliness < 600 && newLoneliness > 300){
+		  	this.comment = ''
+		  }
+			else if(newLoneliness < 300 && newLoneliness > 0){
+		  	this.comment = ''
+		  }
+		  else{
+		  	this.comment = 'WEŹ SIĘ TATO!'
+		  }
+
 		  this.loneliness - 40 > 0 ? this.loneliness-=40 : this.loneliness = 0
 		  this.boredom - 40 > 0 ? this.boredom-=40 : this.boredom = 0 
 		},		
@@ -138,23 +154,37 @@ export const useLife = defineStore({
 		  this.loneliness - 20 > 0 ? this.loneliness-=20 : this.loneliness = 0
 		  this.boredom - 100 > 0 ? this.boredom-=100 : this.boredom = 0 
 		},
+		putInCloset(value) {
+
+			var newLoneliness = this.loneliness += value
+
+			if(this.dead == 1){
+		  	this.comment = 'Prawie jak w filmie "Obecność"... Dom zbudowany na cmentarzysku Tamagotchi!'
+		  }
+			else if(newLoneliness > 900){
+		  	this.comment = 'Widzę lubisz zabawy w Josefa Fritzla...'
+		  }
+			else if(newLoneliness < 900){
+		  	this.comment = 'Ciekawe czy też dostanie zaproszenie do Hogwartu...'
+		  }
+		  newLoneliness < 1000 ? this.loneliness+=value : this.loneliness = 1000
+		},
 		makeOlder(value) {
-		  this.age + value < 100 ? this.age +=value : this.age = 100 
+		  this.age + value < 10000 ? this.age +=value : this.age = 10000 
 		},
 		makeMoreHungry(value) {
 			var newHunger = this.hunger + value
 			if(newHunger < 10000 && newHunger > 4000){
-		  	this.hunger +=value
 		  	this.comment = 'Odchudzanie... może grubas zmieści się w te ubrania po ostatnim potworku, którego wychowywałeś...'
 		  }
 		  else if(newHunger < 10000){
-		  	this.hunger +=value
 		  }
 		  else{
-		  	this.hunger = 10000
-		  	this.comment = 'Popatrz na to z jasnej strony, przynajmniej z glodu sie nie zesra...'
+		  	this.comment = '[ŚMIERĆ] Popatrz na to z jasnej strony, przynajmniej z głodu sie nie zesra...'
 		  	this.dead = 1
 		  }
+
+		  this.hunger + value < 10000 ? this.hunger+=value : this.hunger = 10000
 		},
 		makeMoreThirsty(value) {
 		  var newThirst = this.thirst + value 
@@ -164,13 +194,14 @@ export const useLife = defineStore({
 		  	this.comment = 'Myślisz że jak nie dasz mu wody to wyewoluuje w wielbłąda... Sprytnie! Ciekawe jaki będzie tego finał...'
 		  }
 		  else if(newThirst < 10000){
-		  	this.thirst +=value
+		  	
 		  }
 		  else{
-		  	this.hunger = 10000
-		  	this.comment = 'Popatrz na to z jasnej strony, przynajmniej z glodu sie nie zesra...'
+		  	this.comment = '[ŚMIERĆ] Wygląda jak ofiara suchego dowcipu...'
 		  	this.dead = 1
 		  }
+
+		  this.thirst + value < 10000 ? this.thirst+=value : this.thirst = 10000
 		},
 		makeMoreStuffy(value) {
 		  this.stuffing + value < 10000 ? this.stuffing +=value : this.stuffing = 10000 
@@ -182,7 +213,19 @@ export const useLife = defineStore({
 		  this.addiction + value < 10000 ? this.addiction +=value : this.addiction = 10000 
 		},
 		makeMoreLonely(value) {
-		  this.loneliness + value < 10000 ? this.loneliness +=value : this.loneliness = 10000
+		  var newLonelines = this.loneliness + value 
+		  if(newLonelines < 1000 && newLonelines > 500){
+
+		  	this.comment = 'Twój pupil zaczął ubierać się jak EMO. Naaah na pewno nie brakuje mu Twojej uwagi! ;- )'
+		  }
+		  else if(newLonelines < 1000){
+		  	
+		  }
+		  else{
+		  	this.comment = '[ŚMIERĆ] Powiesił się.. zostawił list pożegnalny o treści: "(¬⌓¬).I."'
+		  	this.dead = 1
+		  }
+		  newLonelines < 1000 ? this.loneliness +=value : this.loneliness = 1000
 		},		
 		makeMoreBored(value) {
 		  this.boredom + value < 10000 ? this.boredom +=value : this.boredom = 10000
